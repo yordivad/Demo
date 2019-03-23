@@ -1,0 +1,9 @@
+
+MyService:
+  text: "hello"
+
+spring:
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017"
+      database: "microservices"

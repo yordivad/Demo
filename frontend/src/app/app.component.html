@@ -1,3 +1,22 @@
 
+<div fxLayout="column" class="app" >
+  <div class="app-header">
+    <app-titlebar (toogle)="drawerToogle()" ></app-titlebar>
+  </div>
+  <div fxFlex="1 1 100%">
+    <mat-drawer-container class="app-content">
+      <mat-drawer mode="side" opened="{{drawerIsOpen}}">
+        <app-navigation></app-navigation>
+      </mat-drawer>
+      <mat-drawer-container>
+        <div fxLayout>
+          <router-outlet></router-outlet>
+        </div>
+      </mat-drawer-container>
+    </mat-drawer-container>
 
-<app-main></app-main>
+  </div>
+  <div fxFlex class="app-footer">
+
+  </div>
+</div>

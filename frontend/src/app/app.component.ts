@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'erp';
+  drawerIsOpen: boolean = true;
+
+
+
+  drawerToogle(  ) {
+    this.drawerIsOpen = !this.drawerIsOpen;
+    console.log("aaa")
+  }
+
 }

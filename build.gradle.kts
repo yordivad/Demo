@@ -49,6 +49,5 @@ dependencies {
 }
 
 application {
-    
-    mainClassName = "mcode.product.AppKt"
+    mainClassName = "mcode.product.App"
 }

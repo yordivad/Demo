@@ -1,8 +1,24 @@
- html {
-  height: 99.5vh;
+@import "~@angular/material/theming";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "app/components/security/security.styles";
+
+@include mat-core();
+
+$primary: mat-palette($mat-blue);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$theme: mat-light-theme($primary,$accent);
+@include angular-material-theme($theme);
+
+@include security_theme($theme)
+
+html {
+  height: 100vh;
 }
  body{
+   font-family: Roboto, Arial, sans-serif;
    height: 100%;
    margin: 0;
    padding: 0;
  }
+
+

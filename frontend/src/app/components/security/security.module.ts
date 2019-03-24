@@ -1,24 +1,34 @@
 
 import {NgModule } from "@angular/core";
-import { ProductComponent } from './product/product.component';
 
 import {
   MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
   MatButtonModule,
-  MatButtonToggleModule, MatCardModule, MatCheckboxModule,
-  MatChipsModule, MatDatepickerModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule, MatFormFieldModule,
   MatGridListModule,
-  MatIconModule, MatInputModule,
-  MatListModule, MatMenuModule, MatNativeDateModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
   MatPaginatorModule,
   MatProgressBarModule,
-  MatProgressSpinnerModule, MatRadioModule, MatSelectModule,
-  MatSidenavModule, MatSliderModule, MatSlideToggleModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
   MatSnackBarModule,
   MatSortModule,
   MatStepperModule,
@@ -26,11 +36,9 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule
+  MatTreeModule,
 } from "@angular/material"
 import {FlexLayoutModule} from "@angular/flex-layout"
-import {TitleBarComponent} from "./shared/titlebar/titlebar.component";
-import {NavigationComponent} from "./shared/navigation/navigation.component";
 import {RouterModule} from "@angular/router";
 
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -38,6 +46,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {environment} from "../../../environments/environment";
+import {LoginComponent} from "./login/login.component";
 
 
 // AoT requires an exported function for factories
@@ -48,7 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   exports: [
-    ProductComponent
+    LoginComponent
   ],
   imports: [
     RouterModule,
@@ -57,19 +66,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    MatRippleModule,
     MatInputModule,
     MatRadioModule,
     MatSelectModule,
     MatSliderModule,
     MatSlideToggleModule,
-
     MatNativeDateModule,
-    // MatMomentDateModule,
-
     MatMenuModule,
     MatSidenavModule,
     MatToolbarModule,
-
     MatCardModule,
     MatDividerModule,
     MatExpansionModule,
@@ -78,7 +84,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatStepperModule,
     MatTabsModule,
     MatTreeModule,
-
     MatButtonModule,
     MatButtonToggleModule,
     MatBadgeModule,
@@ -86,12 +91,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-
     MatBottomSheetModule,
     MatDialogModule,
     MatSnackBarModule,
     MatTooltipModule,
-
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
@@ -109,12 +112,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
   ],
   declarations: [
-    ProductComponent,
-    TitleBarComponent,
-    NavigationComponent,]
+    LoginComponent
+  ]
 })
-
-export class ProductModule {
+export class SecurityModule {
   constructor(private translate: TranslateService){
     let language = "en";
     translate.setDefaultLang(language);

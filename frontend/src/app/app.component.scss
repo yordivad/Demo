@@ -1,13 +1,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-
 .app {
-  display: flex;
   height: 100%;
+  padding: 0;
+  margin: 0;
 }
-
-.app-content {
-  height: 100%;
-}
-
-

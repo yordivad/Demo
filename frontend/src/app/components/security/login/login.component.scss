@@ -1,0 +1,67 @@
+
+@import "~@angular/material/theming";
+
+@mixin login-theme($theme) {
+
+  $primary: map-get($theme, primary);
+
+  .login {
+    background-image: url("~/assets/login.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .login-content {
+    width: 600px;
+    height: 350px;
+    border-radius: 5px;
+    background-color: mat-color($primary);
+    };
+
+  .login-logo {
+    width: 300px;
+    height: 100%;
+    background: url("~/assets/login-logo.png") no-repeat;
+    background-size: 100%;
+  }
+
+  .login-logo-icon {
+    font-size: 100px;
+    color: white;
+    width: 100px;
+    height: 100px;
+  }
+
+  .login-form {
+    height: 100%;
+    width: 300px;
+    background-color: aquamarine;
+  }
+
+  .login-cart {
+    height: 317px;
+  }
+
+  .login-cart-header {
+    height: 100px;
+    align-items: center;
+
+  }
+
+  .login-input--widthFull {
+    width: 100%;
+  }
+
+  .login-input {
+    height: 30px;
+  }
+}
+
+
+

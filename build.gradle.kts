@@ -32,7 +32,12 @@ repositories {
 }
 
 dependencies {
+
+    implementation("io.jsonwebtoken:jjwt-api:0.10.5")
+    runtime("io.jsonwebtoken:jjwt-impl:0.10.5")
+    runtime("io.jsonwebtoken:jjwt-jackson:0.10.5")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation( "org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -49,5 +54,5 @@ dependencies {
 }
 
 application {
-    mainClassName = "mcode.product.App"
+    mainClassName = "mcode.App"
 }

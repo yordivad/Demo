@@ -8,6 +8,7 @@ spring:
       uri: "mongodb://localhost:27017"
       database: "microservices"
 
-zuul:
-  routes:
-    auth-
+mcode:
+  token:
+    secret: "ThisIsSecretForJWTHS512SignatureAlgorithmThatMUSTHave512bitsKeySize"
+    expiration: "28800"

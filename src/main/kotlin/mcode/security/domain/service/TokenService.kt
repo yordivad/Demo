@@ -2,18 +2,20 @@ package mcode.security.domain.service
 
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.security.Keys
 import mcode.security.domain.model.Identity
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.crypto.KeyGenerator
+import javax.crypto.spec.SecretKeySpec
 
 @Service
 class TokenService {
-    @Value("mcode.token.secret")
+    @Value("\${mcode.token.secret}")
     lateinit var secret: String
 
-    @Value("mcode.token.expiration")
+    @Value("\${mcode.token.expiration}")
     lateinit var expirationDate: String
 
 
@@ -37,7 +39,7 @@ class TokenService {
                 .setSubject(identinty.username)
                 .setIssuedAt(createdDate)
                 .setExpiration(expirationDate)
-                .signWith(KeyGenerator.getInstance(secret).generateKey(), SignatureAlgorithm.HS512)
+                .signWith(Keys.hmacShaKeyFor(secret.toByteArray()) , SignatureAlgorithm.HS512)
                 .compact()
     }
 

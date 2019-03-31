@@ -1,34 +1,43 @@
 package mcode.security.domain.service
 
+import mcode.security.domain.message.AuthRequest
+import mcode.security.domain.message.AuthResponse
+import mcode.security.domain.model.Identity
 import mcode.security.domain.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.userdetails.ReactiveUserDetailsService
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Mono
 
 @Service
-class IdentityService : UserDetailsService {
+class IdentityService : ReactiveUserDetailsService {
 
     @Autowired
-    lateinit var repository: UserRepository
+    lateinit var identityRepository: UserRepository
+
+    @Autowired
+    lateinit var passwordEncoder: PasswordEncoder
+
+    @Autowired
+    lateinit var token: TokenService
 
     /**
-     * Locates the user based on the username. In the actual implementation, the search
-     * may possibly be case sensitive, or case insensitive depending on how the
-     * implementation instance is configured. In this case, the `UserDetails`
-     * object that comes back may have a username that is of a different case than what
-     * was actually requested..
-     *
-     * @param username the username identifying the user whose data is required.
-     *
-     * @return a fully populated user record (never `null`)
-     *
-     * @throws UsernameNotFoundException if the user could not be found or the user has no
-     * GrantedAuthority
+     * Find the [UserDetails] by username.
+     * @param username the username to look up
+     * @return the [UserDetails]. Cannot be null
      */
-    override fun loadUserByUsername(username: String): UserDetails =
-            repository.findByUserName(username).map { it.toIdentity() }.block()!!
+    override fun findByUsername(username: String): Mono<UserDetails> =
+            identityRepository.findByUserName(username).map { it.toIdentity() }
 
-    //fun authenticate()
 
+    fun authenticated(auth: Mono<AuthRequest>): Mono<AuthResponse> =
+            auth.flatMap { user ->
+                this.findByUsername(user.user).map {
+                    if (passwordEncoder.encode(user.passrword).equals(it.password))
+                        AuthResponse(token.generateToken(it as Identity))
+                    else AuthResponse("")
+                }
+            }
 }

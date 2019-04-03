@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
+import reactor.core.publisher.toMono
 
 @Service
 class IdentityService : ReactiveUserDetailsService {
@@ -34,10 +35,10 @@ class IdentityService : ReactiveUserDetailsService {
 
     fun authenticated(auth: Mono<AuthRequest>): Mono<AuthResponse> =
             auth.flatMap { user ->
-                this.findByUsername(user.user).map {
-                    if (passwordEncoder.encode(user.passrword).equals(it.password))
-                        AuthResponse(token.generateToken(it as Identity))
-                    else AuthResponse("")
+                this.findByUsername(user.user).flatMap {
+                    if (passwordEncoder.matches(user.password , it.password))
+                        AuthResponse(token.generateToken(it as Identity)).toMono()
+                    else Mono.empty()
                 }
             }
 }

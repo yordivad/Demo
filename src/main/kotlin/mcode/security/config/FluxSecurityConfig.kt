@@ -1,5 +1,7 @@
-package mcode.security.infrastructure
+package mcode.security.config
 
+import mcode.security.infrastructure.AuthenticationManager
+import mcode.security.infrastructure.SecurityRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

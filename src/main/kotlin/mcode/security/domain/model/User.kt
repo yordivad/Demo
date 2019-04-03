@@ -10,6 +10,7 @@ class User(var name: String, var email: String, var password: String) {
     var nonLocked: Boolean = true
     var credentialsNonExpire: Boolean = false
 
+    constructor( name: String,  password: String): this(name,"",password)
 
     constructor(user: User) : this(user.name, user.email, user.password) {
         nonExpire = user.nonExpire

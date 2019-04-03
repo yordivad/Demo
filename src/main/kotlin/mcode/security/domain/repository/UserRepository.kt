@@ -11,5 +11,10 @@ import reactor.core.publisher.Mono
 @Repository
 class UserRepository (val template: ReactiveMongoTemplate) {
     fun findByUserName(name: String) : Mono<User> =
-            this.template.findOne(Query.query(Criteria.where("user").`is`(name)), User::class.java)
+            this.template.findOne(Query.query(Criteria.where("name").`is`(name)), User::class.java)
+
+    fun save(user: Mono<User>) =
+        this.template.save(user)
+
+
 }

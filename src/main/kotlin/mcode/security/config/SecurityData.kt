@@ -24,8 +24,8 @@ class SecurityData {
 
     @PostConstruct
     fun init() {
-        operations.collectionExists("users").subscribe {
-            if (it != true) {
+        operations.collectionExists("Users").subscribe {
+            if (!it ) {
                 operations.createCollection("Users").subscribe {
                     userRepository.save(User("roy", passwordEncoder.encode("123")).toMono()).subscribe {
                         println("user created")

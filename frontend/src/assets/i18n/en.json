@@ -1,4 +1,5 @@
 {
   "PRODUCT_APP_TITLE" : "Products",
-  "LOGIN_TITLE" : "Sing in"
+  "LOGIN_TITLE" : "Sing in",
+  "LOGIN_PASSWORD_FORGOT": "Forgot Password?"
 }

@@ -47,6 +47,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import {environment} from "../../../environments/environment";
 import {LoginComponent} from "./login/login.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BrowserModule} from "@angular/platform-browser";
+import {AuthService} from "./service/AuthService";
+
 
 
 // AoT requires an exported function for factories
@@ -56,11 +60,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 
 @NgModule({
-  exports: [
-    LoginComponent
-  ],
+
   imports: [
     RouterModule,
+    BrowserModule,
     TranslateModule,
     MatAutocompleteModule,
     MatCheckboxModule,
@@ -101,6 +104,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FlexLayoutModule,
     HttpClientModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
     TranslateModule.forRoot({
@@ -111,8 +116,14 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
   ],
+  exports: [
+    LoginComponent
+  ],
   declarations: [
     LoginComponent
+  ],
+  providers : [
+    AuthService
   ]
 })
 export class SecurityModule {

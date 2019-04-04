@@ -17,17 +17,17 @@
         <mat-card-content>
 
           <mat-form-field class="login-input--widthFull">
-            <input matInput placeholder="User" class="login-input">
+            <input matInput placeholder="User" class="login-input" [formControl]="user">
           </mat-form-field>
           <mat-form-field class="login-input--widthFull">
-            <input matInput placeholder="Password" type="password" class="login-input">
+            <input matInput placeholder="Password" type="password" class="login-input" [formControl]="password">
           </mat-form-field>
 
         </mat-card-content>
         <mat-card-actions fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between start">
 
-          <button mat-button fxFlex="1 2 60%">Forgot Password?</button>
-          <button mat-flat-button color="primary" fxFlex="1 1 auto">{{"LOGIN_TITLE" | translate}}</button>
+          <button mat-button fxFlex="1 2 60%">{{"LOGIN_PASSWORD_FORGOT" | translate }}</button>
+          <button mat-flat-button color="primary" fxFlex="1 1 auto" (click) ="login()" >{{"LOGIN_TITLE" | translate}}</button>
 
         </mat-card-actions>
       </mat-card>

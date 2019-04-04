@@ -4,7 +4,9 @@ import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./routes/app-routing.module";
 import {BrowserModule} from "@angular/platform-browser";
 import {AuthenticatedGuard} from "./security/AuthenticatedGuard";
-import {AuthService} from "./security/AuthService";
+import {SecurityModule} from "./components/security/security.module";
+import {TokenInterceptor} from "./security/TokenInterceptor";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -13,11 +15,17 @@ import {AuthService} from "./security/AuthService";
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SecurityModule
   ],
   exports: [
   ],
-  providers: [AuthenticatedGuard, AuthService],
+  providers: [AuthenticatedGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

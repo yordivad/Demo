@@ -8,9 +8,20 @@ import {SecurityModule} from "../components/security/security.module";
 
 const routes: Routes = [
   {
+    path:'',
+    redirectTo: '/home',
+    pathMatch: "full"
+  },
+  {
     path:'login',
     component: LoginComponent
   },
+  {
+    path: "home",
+    component: ProductComponent,
+    canActivate: [AuthenticatedGuard]
+  },
+
   {
     path:'product',
     component: ProductComponent,
